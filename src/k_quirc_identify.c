@@ -318,13 +318,13 @@ static void contrast_stretch(uint8_t *image, int w, int h) {
   if (high <= low)
     return; /* degenerate — skip */
 
-  /* Skip remap when contrast is already sufficient */
-  if (high - low >= 230)
+  /* Skip remap when stretch would be less than ~15% */
+  int range = high - low;
+  if (range * 100 >= 255 * 85)
     return;
 
   /* Build remap LUT */
   uint8_t remap[256];
-  int range = high - low;
   for (int i = 0; i < 256; i++) {
     if (i <= low)
       remap[i] = 0;
