@@ -19,6 +19,14 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC K_QUIRC_BILINEAR_THRESHOLD)
 # Uncomment to enable the inverted-colors retry pass when no QR is found.
 # target_compile_definitions(${COMPONENT_LIB} PUBLIC K_QUIRC_INVERTED_RETRY)
 
-# Uncomment to enable QR debug visualization mode
-# This shows the thresholded pixel buffer with timing pattern overlays
-# target_compile_definitions(${COMPONENT_LIB} PUBLIC K_QUIRC_DEBUG)
+# Contrast stretch - Kconfig-driven when building under ESP-IDF
+if(CONFIG_K_QUIRC_CONTRAST_STRETCH)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC K_QUIRC_CONTRAST_STRETCH)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        K_QUIRC_CONTRAST_CLIP_PCT=${CONFIG_K_QUIRC_CONTRAST_CLIP_PCT})
+endif()
+
+# Debug visualization - Kconfig-driven when building under ESP-IDF
+if(CONFIG_K_QUIRC_DEBUG)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC K_QUIRC_DEBUG)
+endif()
