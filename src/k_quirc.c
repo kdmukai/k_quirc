@@ -159,13 +159,18 @@ k_quirc_error_t k_quirc_decode(k_quirc_t *q, int index,
 
   quirc_extract_internal(q, index, code);
 
+  /* Report the detected QR's corner positions regardless of decode outcome.
+   * quirc_extract_internal fills code->corners before decoding is attempted, so
+   * a located-but-undecoded code can still be measured by the caller (e.g. to
+   * compute pixels-per-module). result->valid stays false on decode failure. */
+  for (int i = 0; i < 4; i++) {
+    result->corners[i].x = code->corners[i].x;
+    result->corners[i].y = code->corners[i].y;
+  }
+
   k_quirc_error_t err = quirc_decode_internal(code, data, ds);
   if (err == K_QUIRC_SUCCESS) {
     result->valid = true;
-    for (int i = 0; i < 4; i++) {
-      result->corners[i].x = code->corners[i].x;
-      result->corners[i].y = code->corners[i].y;
-    }
     result->data.version = data->version;
     result->data.ecc_level = data->ecc_level;
     result->data.mask = data->mask;
