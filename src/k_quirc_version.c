@@ -182,4 +182,18 @@ const struct quirc_version_info quirc_version_db[QUIRC_MAX_VERSION + 1] = {
              {.bs = 132, .dw = 106, .ns = 8},
              {.bs = 45, .dw = 15, .ns = 22},
              {.bs = 54, .dw = 24, .ns = 3}}},
+    {/* Version 26 */
+     .data_bytes = 1706,
+     .apat = {6, 30, 58, 86, 114, 0},
+     .ecc = {{.bs = 74, .dw = 46, .ns = 19},
+             {.bs = 142, .dw = 114, .ns = 10},
+             {.bs = 46, .dw = 16, .ns = 33},
+             {.bs = 50, .dw = 22, .ns = 28}}},
+    {/* Version 27 */
+     .data_bytes = 1828,
+     .apat = {6, 34, 62, 90, 118, 0},
+     .ecc = {{.bs = 73, .dw = 45, .ns = 22},
+             {.bs = 152, .dw = 122, .ns = 8},
+             {.bs = 45, .dw = 15, .ns = 12},
+             {.bs = 53, .dw = 23, .ns = 8}}},
 };

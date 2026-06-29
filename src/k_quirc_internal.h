@@ -67,7 +67,7 @@ static inline void *k_malloc_fast(size_t size) {
 #define QUIRC_MAX_CAPSTONES 32
 #define QUIRC_MAX_GRIDS 8
 #define QUIRC_PERSPECTIVE_PARAMS 8
-#define QUIRC_MAX_VERSION 25
+#define QUIRC_MAX_VERSION 27
 #define QUIRC_MAX_ALIGNMENT 7
 #define QUIRC_FLOOD_FILL_STACK 8192
 #define K_QUIRC_MAX_IMAGE_DIM 1280
